@@ -1,0 +1,87 @@
+public class Main
+{
+	public static void main(String[] args) {
+	Queue q=new Queue();
+	q.push(5);
+	q.push(10);
+	System.out.println("The top element of the queue is "+q.top());
+	System.out.println("The size of the queue is "+q.size());
+	System.out.println("The popped element of the queue is "+q.pop());
+    System.out.println("The size of the queue is "+q.size());
+		
+	}
+	
+}
+
+class Queue{
+    int maxSize,currSize,front,rear;
+    int q[];
+    
+    public Queue()
+    {
+        maxSize=5;
+        currSize=0;
+        front=rear=-1;
+        q=new int[maxSize];
+    }
+    
+    public Queue(int maxSize)
+    {
+        this.maxSize=maxSize;
+        currSize=0;
+        front=rear=-1;
+        q=new int[maxSize];
+    }
+    
+    public void push(int data)
+    {
+        if(currSize==maxSize)
+        {
+            System.out.println("Queue is Full\nExiting...");
+            System.exit(1);
+        }
+        if(rear==-1)
+        {
+            front=0;
+            rear=0;
+        }else{
+            rear=(rear+1)%maxSize;
+        }
+        q[rear]=data;
+        System.out.println("The Element is pushed " + data);
+        currSize++;
+    }
+    
+    public int pop()
+    {
+        if(front==-1)
+        {
+            System.out.println("Queue is Empty\nExiting...");
+            System.exit(1);
+        }
+        int popped=q[front];
+        if(currSize==1)
+        {
+            front=rear=-1;
+        }else{
+            front=(front+1)%maxSize;
+        }
+        currSize--;
+        return popped;
+    }
+    
+    public int top()
+    {
+        if(front==-1)
+        {
+            System.out.println("Queue is Empty.");
+            System.exit(1);
+        }
+        return q[front];
+    }
+    
+    public int size()
+    {
+        return currSize;
+    }
+}
